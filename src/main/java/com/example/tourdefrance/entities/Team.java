@@ -18,7 +18,7 @@ public class Team {
 
     private String teamName;
 
-    @OneToMany(mappedBy = "team", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "team", fetch = FetchType.LAZY)
     private List<Cyclist> cyclists;
 
 
