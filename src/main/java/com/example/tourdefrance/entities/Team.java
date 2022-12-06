@@ -1,4 +1,5 @@
 package com.example.tourdefrance.entities;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -18,7 +19,8 @@ public class Team {
 
     private String teamName;
 
-    @OneToMany(mappedBy = "team", fetch = FetchType.LAZY)
+    @JsonBackReference
+    @OneToMany(mappedBy = "team", cascade = CascadeType.ALL)
     private List<Cyclist> cyclists;
 
 

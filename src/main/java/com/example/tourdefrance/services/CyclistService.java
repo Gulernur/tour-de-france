@@ -1,5 +1,6 @@
 package com.example.tourdefrance.services;
 
+import com.example.tourdefrance.dtos.CyclistRequest;
 import com.example.tourdefrance.dtos.CyclistResponse;
 import com.example.tourdefrance.entities.Cyclist;
 import com.example.tourdefrance.repositories.CyclistRepository;
@@ -21,5 +22,11 @@ public class CyclistService {
         List<CyclistResponse> response = cyclists.stream().map(cyclist ->
                 new CyclistResponse(cyclist)).collect(Collectors.toList());
         return response;
+    }
+
+    public CyclistResponse addCyclist(CyclistRequest cyclistRequest){
+        Cyclist cyclist = CyclistRequest.getCyclistEntity(cyclistRequest);
+        cyclist = cyclistRepository.save(cyclist);
+        return new CyclistResponse(cyclist);
     }
 }
